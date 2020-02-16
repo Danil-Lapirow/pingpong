@@ -84,12 +84,12 @@ class BaseObject
         other_vertexes = object.vertexes
 
         if !other_vertexes.empty?
-          my_vertex = my_vertexes[0]
+          my_vertex = my_vertexes.last
 
-          my_vertexes.skip(1).each do |my_next_vertex|
-            vertex = other_vertexes[0]
+          my_vertexes.each do |my_next_vertex|
+            vertex = other_vertexes.last
 
-            other_vertexes.skip(1).each do |next_vertex|
+            other_vertexes.each do |next_vertex|
               v1 = (next_vertex.x - vertex.x)*(my_vertex.y - vertex.y) - (next_vertex.y - vertex.y)*(my_vertex.x - vertex.x)
               v2 = (next_vertex.x - vertex.x)*(my_next_vertex.y - vertex.y) - (next_vertex.y - vertex.y)*(my_next_vertex.x - vertex.x)
               v3 = (my_next_vertex.x - my_vertex.x)*(vertex.y - my_vertex.y) - (my_next_vertex.y - my_vertex.y)*(vertex.x - my_vertex.x)
@@ -182,9 +182,9 @@ class Player < MovingObject
   end
 end
 
-player1 = Player.new SF::Vector2f.new((width/3 - Player.body_size/2).to_f32, 99.to_f32)
+player1 = Player.new SF::Vector2f.new((width/3 - Player.body_size/2).to_f32, 100.to_f32)
 objects << player1
-player2 = Player.new SF::Vector2f.new((width/2 - Player.body_size/2).to_f32, 100.to_f32)
+player2 = Player.new SF::Vector2f.new((width/2 - Player.body_size/2).to_f32, (height - 100).to_f32)
 objects << player2
 ball = Ball.new SF::Vector2f.new((width/2 - Ball.body_size/2).to_f32, (height/2 - Ball.body_size/2).to_f32)
 objects << ball
