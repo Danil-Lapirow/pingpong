@@ -35,6 +35,7 @@ class BaseObject
 
   def initialize(@body, @@body_size, start_pos)
     @body.position = start_pos
+    @body.origin = SF::Vector2f.new(@@body_size/2, @@body_size/2)
   end
 
   def draw(window)
